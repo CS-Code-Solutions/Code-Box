@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeBox | Dev Vault & SaaS Toolbox</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body class="auth-loading min-h-screen flex flex-col">
+
+  <div id="app-shell" class="flex-1 flex flex-col pb-20 md:pb-0">
+    
+    <!-- HEADER / NAVBAR DESKTOP -->
+    <header class="osync-navbar sticky top-0 z-40 shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        <!-- Logo CodeBox -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="Router.navegarPara('dashboard')">
+          <div class="w-9 h-9 rounded-xl bg-[#131C31] border border-[#00E5B0]/40 flex items-center justify-center text-[#00E5B0]">
+            <i data-lucide="box" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-white font-extrabold text-lg tracking-tight">Code<span class="text-[#00E5B0]">Box</span></span>
+              <span class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#131C31] text-[#00E5B0] border border-[#00E5B0]/30">VAULT</span>
+            </div>
+            <p class="text-[11px] text-slate-400 hidden sm:block">SaaS Toolbox & Secrets Manager</p>
+          </div>
+        </div>
+
+        <!-- Menu Desktop Central -->
+        <nav class="hidden md:flex items-center gap-2">
+          <button data-route="dashboard" onclick="Router.navegarPara('dashboard')" class="nav-item-desktop px-4 py-2 rounded-xl text-sm flex items-center gap-2">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+            <span>Visão Geral</span>
+          </button>
+          <button data-route="projetos" onclick="Router.navegarPara('projetos')" class="nav-item-desktop px-4 py-2 rounded-xl text-sm flex items-center gap-2">
+            <i data-lucide="layers" class="w-4 h-4"></i>
+            <span>Sistemas & Atalhos</span>
+          </button>
+          <button data-route="cofre" onclick="Router.navegarPara('cofre')" class="nav-item-desktop px-4 py-2 rounded-xl text-sm flex items-center gap-2">
+            <i data-lucide="key-round" class="w-4 h-4"></i>
+            <span>Cofre & Secrets</span>
+          </button>
+        </nav>
+
+        <!-- Status do Cofre & Logout -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button id="btn-vault-status" onclick="Auth.abrirModalCofre()" class="px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/25 transition">
+            <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+            <span id="vault-status-text">Cofre Bloqueado</span>
+          </button>
+
+          <button onclick="Auth.logout()" title="Sair do Sistema" class="p-2 rounded-xl text-slate-400 hover:text-rose-400 hover:bg-white/5 transition">
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ÁREA DINÂMICA DAS PÁGINAS SPA -->
+    <main id="app-content" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <!-- Fragmentos pages/*.html são injetados aqui -->
+    </main>
+
+    <!-- RODAPÉ INSTITUCIONAL -->
+    <footer class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <span>CodeBox &copy; 2026 — Ambiente Exclusivo de Gestão Técnica</span>
+      <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" rel="noopener noreferrer" class="font-semibold text-slate-600 hover:text-blue-600 transition">
+        Powered by CS Code Solutions
+      </a>
+    </footer>
+
+    <!-- BOTTOM NAVIGATION MOBILE -->
+    <nav class="osync-bottom-nav md:hidden fixed bottom-0 inset-x-0 z-40 h-16 px-2 flex items-center justify-around">
+      <button data-route="dashboard" onclick="Router.navegarPara('dashboard')" class="nav-item-mobile flex-1 py-1.5 mx-1 rounded-xl flex flex-col items-center justify-center gap-1 text-[11px]">
+        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+        <span>Início</span>
+      </button>
+      <button data-route="projetos" onclick="Router.navegarPara('projetos')" class="nav-item-mobile flex-1 py-1.5 mx-1 rounded-xl flex flex-col items-center justify-center gap-1 text-[11px]">
+        <i data-lucide="layers" class="w-5 h-5"></i>
+        <span>Sistemas</span>
+      </button>
+      <button data-route="cofre" onclick="Router.navegarPara('cofre')" class="nav-item-mobile flex-1 py-1.5 mx-1 rounded-xl flex flex-col items-center justify-center gap-1 text-[11px]">
+        <i data-lucide="key-round" class="w-5 h-5"></i>
+        <span>Cofre</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- MODAL DE DESBLOQUEIO DA SENHA MESTRA (AES-256) -->
+  <div id="modal-master-password" class="hidden fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-md w-full overflow-hidden">
+      <div class="bg-[#0B1120] border-b-2 border-[#00E5B0] px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <i data-lucide="shield-check" class="w-5 h-5 text-[#00E5B0]"></i>
+          <h3 class="text-white font-bold text-base">Desbloquear Cofre AES-256</h3>
+        </div>
+        <button onclick="Auth.fecharModalCofre()" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <form id="form-unlock-vault" class="p-6 space-y-4">
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Digite sua <strong>Senha Mestra</strong> para derivar a chave criptográfica na memória deste navegador. Ela nunca é enviada ou salva no servidor.
+        </p>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Senha Mestra</label>
+          <input type="password" id="input-master-password" required placeholder="••••••••••••"
+            class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+        </div>
+        <div class="flex items-center justify-end gap-2 pt-2">
+          <button type="button" onclick="Auth.fecharModalCofre()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">
+            Cancelar
+          </button>
+          <button type="submit" class="btn-cta-cyan px-5 py-2.5 rounded-xl text-xs flex items-center gap-2">
+            <i data-lucide="unlock" class="w-4 h-4"></i>
+            <span>Desbloquear Sessão</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CONTAINER DE TOASTS -->
+  <div id="toast-container" class="fixed bottom-20 md:bottom-6 right-4 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- FIREBASE SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <!-- SCRIPTS MODULARES DO CODEBOX -->
+  <script src="js/firebase-config.js?v=1"></script>
+  <script src="js/crypto-vault.js?v=1"></script>
+  <script src="js/utils.js?v=1"></script>
+  <script src="js/auth.js?v=1"></script>
+  <script src="js/router.js?v=1"></script>
+  <script src="js/dashboard.js?v=1"></script>
+  <script src="js/projetos.js?v=1"></script>
+  <script src="js/cofre.js?v=1"></script>
+</body>
+</html>

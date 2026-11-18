@@ -1,0 +1,86 @@
+<div class="space-y-6">
+  
+  <!-- Cabeçalho da Página -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <div>
+      <h1 class="text-2xl font-bold text-slate-900">Visão Geral & Alertas</h1>
+      <p class="text-xs sm:text-sm text-slate-500">Monitoramento de vencimento de segredos, chaves Azure e atalhos rápidos.</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="Router.navegarPara('projetos')" class="px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-bold flex items-center gap-2 shadow-xs transition">
+        <i data-lucide="plus" class="w-4 h-4 text-blue-600"></i>
+        <span>Novo Sistema</span>
+      </button>
+      <button onclick="Router.navegarPara('cofre')" class="btn-cta-cyan px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow-xs">
+        <i data-lucide="key-round" class="w-4 h-4"></i>
+        <span>Novo Secret</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- KPIs de Saúde das Credenciais -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="osync-card p-4">
+      <span class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Sistemas Ativos</span>
+      <div class="mt-2 flex items-baseline justify-between">
+        <span id="kpi-projetos" class="text-2xl font-extrabold text-slate-900">0</span>
+        <i data-lucide="layers" class="w-5 h-5 text-blue-600"></i>
+      </div>
+    </div>
+
+    <div class="osync-card status-critico p-4">
+      <span class="text-[11px] font-extrabold uppercase tracking-wider text-rose-600">Vencidos / Urgentes (≤15d)</span>
+      <div class="mt-2 flex items-baseline justify-between">
+        <span id="kpi-criticos" class="text-2xl font-extrabold text-rose-700">0</span>
+        <i data-lucide="alert-octagon" class="w-5 h-5 text-rose-600"></i>
+      </div>
+    </div>
+
+    <div class="osync-card status-atencao p-4">
+      <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-600">Atenção (16d - 45d)</span>
+      <div class="mt-2 flex items-baseline justify-between">
+        <span id="kpi-atencao" class="text-2xl font-extrabold text-amber-700">0</span>
+        <i data-lucide="clock" class="w-5 h-5 text-amber-500"></i>
+      </div>
+    </div>
+
+    <div class="osync-card status-ok p-4">
+      <span class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-600">Segredos Em Dia</span>
+      <div class="mt-2 flex items-baseline justify-between">
+        <span id="kpi-ok" class="text-2xl font-extrabold text-emerald-700">0</span>
+        <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Radar de Renovação de Senhas e Secrets -->
+  <section class="space-y-3">
+    <div class="flex items-center justify-between">
+      <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+        <i data-lucide="bell-ring" class="w-4 h-4 text-rose-600"></i>
+        <span>Radar de Expiração (Secrets & Certificados)</span>
+      </h2>
+      <span class="text-[11px] font-semibold text-slate-500">Ordenado por urgência</span>
+    </div>
+
+    <div id="dashboard-alertas-lista" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Preenchido via js/dashboard.js -->
+    </div>
+  </section>
+
+  <!-- Acesso Rápido aos Sistemas -->
+  <section class="space-y-3">
+    <div class="flex items-center justify-between">
+      <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+        <i data-lucide="zap" class="w-4 h-4 text-blue-600"></i>
+        <span>Acesso Rápido aos Sistemas & Painéis</span>
+      </h2>
+      <button onclick="Router.navegarPara('projetos')" class="text-xs font-bold text-blue-600 hover:underline">Ver todos</button>
+    </div>
+
+    <div id="dashboard-atalhos-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Preenchido via js/dashboard.js -->
+    </div>
+  </section>
+
+</div>

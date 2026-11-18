@@ -17,7 +17,7 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // E-mail autorizado (substitua pelo seu e-mail exato de login)
-const OWNER_EMAIL = "SEU_EMAIL_AQUI@gmail.com";
+const OWNER_EMAIL = "cristianst3@gmail.com";
 
 // Coleções do CodeBox
 const COLLECTIONS = {

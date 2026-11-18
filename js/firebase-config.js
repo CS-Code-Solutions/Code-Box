@@ -1,14 +1,14 @@
 // js/firebase-config.js
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_PROJETO.firebaseapp.com",
-  projectId: "SEU_PROJETO",
-  storageBucket: "SEU_PROJETO.appspot.com",
-  messagingSenderId: "SEU_SENDER_ID",
-  appId: "SEU_APP_ID"
+  apiKey: "AIzaSyD3p1abmkOT7NXbwMhnmlLTtk52IR5JdLM",
+  authDomain: "codebox-ee31e.firebaseapp.com",
+  projectId: "codebox-ee31e",
+  storageBucket: "codebox-ee31e.firebasestorage.app",
+  messagingSenderId: "710591563279",
+  appId: "1:710591563279:web:144267c8bb4db646ca057a"
 };
 
-// Inicializa Firebase (SDK Compat)
+// Inicializa Firebase (SDK Compat para GitHub Pages / HTML estático)
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -16,7 +16,7 @@ if (!firebase.apps.length) {
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// E-mail autorizado (camada extra no front-end além do firestore.rules)
+// E-mail autorizado (substitua pelo seu e-mail exato de login)
 const OWNER_EMAIL = "SEU_EMAIL_AQUI@gmail.com";
 
 // Coleções do CodeBox

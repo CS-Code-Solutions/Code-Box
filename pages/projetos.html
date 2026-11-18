@@ -1,0 +1,127 @@
+<div class="space-y-6">
+  
+  <!-- Cabeçalho -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <div>
+      <h1 class="text-2xl font-bold text-slate-900">Sistemas & Serviços Vinculados</h1>
+      <p class="text-xs sm:text-sm text-slate-500">Agrupe seus projetos e salve os atalhos diretos para cada console e conta utilizada.</p>
+    </div>
+    <button onclick="ProjetosModule.abrirModalProjeto()" class="btn-cta-cyan px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 self-start sm:self-auto shadow-xs">
+      <i data-lucide="folder-plus" class="w-4 h-4"></i>
+      <span>+ Novo Sistema</span>
+    </button>
+  </div>
+
+  <!-- Busca Rápida -->
+  <div class="bg-white p-3 rounded-xl border border-slate-200 flex items-center gap-2.5 shadow-xs">
+    <i data-lucide="search" class="w-4 h-4 text-slate-400 ml-1"></i>
+    <input type="text" id="busca-projetos" placeholder="Filtrar por nome do sistema, cliente, provedor (Azure, Firebase) ou conta..."
+      class="w-full text-sm bg-transparent outline-none text-slate-800 placeholder-slate-400" />
+  </div>
+
+  <!-- Lista de Projetos e seus Atalhos -->
+  <div id="lista-projetos-container" class="space-y-4">
+    <!-- Renderizado via js/projetos.js -->
+  </div>
+
+</div>
+
+<!-- MODAL: NOVO / EDITAR SISTEMA -->
+<div id="modal-projeto" class="hidden fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-xs flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-lg w-full overflow-hidden">
+    <div class="bg-[#0B1120] border-b-2 border-[#00E5B0] px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i data-lucide="layers" class="w-5 h-5 text-[#00E5B0]"></i>
+        <h3 id="modal-projeto-titulo" class="text-white font-bold text-base">Cadastrar Sistema</h3>
+      </div>
+      <button onclick="ProjetosModule.fecharModalProjeto()" class="text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <form id="form-projeto" class="p-6 space-y-4">
+      <input type="hidden" id="projeto-id" />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Nome do Sistema *</label>
+          <input type="text" id="projeto-nome" required placeholder="Ex: Reserva de Salas"
+            class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Cliente / Contexto</label>
+          <input type="text" id="projeto-cliente" placeholder="Ex: CS Code / Cliente X"
+            class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 mb-1">URL de Produção</label>
+        <input type="url" id="projeto-url" placeholder="https://..."
+          class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 mb-1">Repositório GitHub</label>
+        <input type="url" id="projeto-repo" placeholder="https://github.com/CS-Code-Solutions/..."
+          class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2">
+        <button type="button" onclick="ProjetosModule.fecharModalProjeto()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">Cancelar</button>
+        <button type="submit" class="btn-cta-cyan px-5 py-2.5 rounded-xl text-xs">Salvar Sistema</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL: VINCULAR SERVIÇO / ATALHO SAAS -->
+<div id="modal-servico" class="hidden fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-xs flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-lg w-full overflow-hidden">
+    <div class="bg-[#0B1120] border-b-2 border-[#00E5B0] px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i data-lucide="link" class="w-5 h-5 text-[#00E5B0]"></i>
+        <h3 class="text-white font-bold text-base">Vincular Serviço / Atalho SaaS</h3>
+      </div>
+      <button onclick="ProjetosModule.fecharModalServico()" class="text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <form id="form-servico" class="p-6 space-y-4">
+      <input type="hidden" id="servico-id" />
+      <input type="hidden" id="servico-projeto-id" />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Provedor / Ferramenta *</label>
+          <input type="text" id="servico-provedor" required placeholder="Ex: Azure Entra ID, Firebase, EmailJS"
+            class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Conta / E-mail Vinculado *</label>
+          <input type="text" id="servico-conta" required placeholder="Ex: admin@cliente.com"
+            class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 mb-1">URL Direta para o Recurso / Console *</label>
+        <input type="url" id="servico-url" required placeholder="https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/..."
+          class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+        <p class="text-[11px] text-slate-400 mt-1">Cole o link exato da aba de credenciais ou painel do projeto para abrir em 1 clique.</p>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 mb-1">Observações Técnicas (Tenant ID, App ID, etc.)</label>
+        <input type="text" id="servico-obs" placeholder="Ex: Tenant: 8f9a... | Plano Spark"
+          class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2">
+        <button type="button" onclick="ProjetosModule.fecharModalServico()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">Cancelar</button>
+        <button type="submit" class="btn-cta-cyan px-5 py-2.5 rounded-xl text-xs">Salvar Vínculo</button>
+      </div>
+    </form>
+  </div>
+</div>

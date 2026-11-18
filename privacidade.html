@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacidade e Segurança | CodeBox</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body class="bg-[#F1F5F9] text-slate-900 min-h-screen flex flex-col">
+
+  <header class="osync-navbar py-4 px-6">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <span class="text-white font-extrabold text-lg">Code<span class="text-[#00E5B0]">Box</span></span>
+      <a href="login.html" class="text-xs font-bold text-[#00E5B0] hover:underline">Voltar ao Login</a>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 py-8">
+    <div class="osync-card p-6 sm:p-8 space-y-5">
+      <div>
+        <span class="text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">Segurança & LGPD</span>
+        <h1 class="text-2xl font-bold text-slate-900 mt-3">Política de Privacidade e Arquitetura de Segurança</h1>
+        <p class="text-xs text-slate-500 mt-1">Última atualização: Novembro de 2026</p>
+      </div>
+
+      <section class="space-y-2 text-sm text-slate-600 leading-relaxed">
+        <h2 class="font-bold text-slate-900 text-base">1. Finalidade e Uso Exclusivo</h2>
+        <p>O <strong>CodeBox</strong> é uma ferramenta privada de gestão de infraestrutura SaaS, atalhos administrativos e controle de vencimento de credenciais técnicas desenvolvida pela <strong>CS Code Solutions</strong>.</p>
+      </section>
+
+      <section class="space-y-2 text-sm text-slate-600 leading-relaxed">
+        <h2 class="font-bold text-slate-900 text-base">2. Criptografia Ponta-a-Ponta (Zero-Knowledge)</h2>
+        <p>Todos os segredos, <em>Client Secrets</em> (como Azure Entra ID) e chaves de API cadastrados no cofre são criptografados localmente no navegador do administrador utilizando <strong>AES-256-GCM</strong> com derivação de chave <strong>PBKDF2</strong> antes de qualquer transmissão ao banco de dados. A Senha Mestra nunca é armazenada em servidores, cookies ou armazenamento local persistente.</p>
+      </section>
+
+      <section class="space-y-2 text-sm text-slate-600 leading-relaxed">
+        <h2 class="font-bold text-slate-900 text-base">3. Controle de Acesso e Conformidade LGPD</h2>
+        <p>O acesso às coleções do banco de dados é restrito exclusivamente ao identificador autenticado do administrador proprietário por meio de regras rigorosas de servidor (<code>firestore.rules</code>), garantindo sigilo, integridade e rastreabilidade conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="text-center py-4 text-xs text-slate-500">
+    <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600">
+      Powered by CS Code Solutions
+    </a>
+  </footer>
+</body>
+</html>

@@ -19,10 +19,10 @@ const db = firebase.firestore();
 // E-mail autorizado (substitua pelo seu e-mail exato de login)
 const OWNER_EMAIL = "cristianst3@gmail.com";
 
-// Coleções do CodeBox
 const COLLECTIONS = {
   PROJETOS: "codebox_projetos",
   SERVICOS: "codebox_servicos",
   SEGREDOS: "codebox_segredos",
+  FERRAMENTAS: "codebox_ferramentas",
   CONFIG: "codebox_config"
 };

@@ -1,9 +1,9 @@
 // js/router.js
 const Router = (() => {
   let rotaAtual = "dashboard";
-  let activeUnsubscribers = []; // Armazena funções unsubscribe() do Firestore
+  let activeUnsubscribers = [];
 
-  const ROTAS_VALIDAS = ["dashboard", "projetos", "cofre"];
+  const ROTAS_VALIDAS = ["dashboard", "projetos", "ferramentas", "cofre"];
 
   function registrarListener(unsubFn) {
     if (typeof unsubFn === "function") {
@@ -45,18 +45,19 @@ const Router = (() => {
     container.innerHTML = Utils.renderSkeletonCards(3);
 
     try {
-      const response = await fetch(`pages/${destino}.html?v=1`);
+      const response = await fetch(`pages/${destino}.html?v=2`);
       if (!response.ok) throw new Error("Página não encontrada.");
       const html = await response.text();
       container.innerHTML = html;
 
       lucide.createIcons();
 
-      // Dispara inicializador do módulo correspondente
       if (destino === "dashboard" && typeof DashboardModule !== "undefined") {
         DashboardModule.init();
       } else if (destino === "projetos" && typeof ProjetosModule !== "undefined") {
         ProjetosModule.init();
+      } else if (destino === "ferramentas" && typeof FerramentasModule !== "undefined") {
+        FerramentasModule.init();
       } else if (destino === "cofre" && typeof CofreModule !== "undefined") {
         CofreModule.init();
       }

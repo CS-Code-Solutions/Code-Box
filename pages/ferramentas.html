@@ -1,0 +1,98 @@
+<div class="space-y-6">
+
+  <!-- Cabeçalho da Página -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <div>
+      <h1 class="text-2xl font-bold text-slate-900">Caixa de Ferramentas & Utilitários</h1>
+      <p class="text-xs sm:text-sm text-slate-500">Seus sites favoritos organizados por categoria, com ícones automáticos, descrição e conta de acesso.</p>
+    </div>
+    <button onclick="FerramentasModule.abrirModal()" class="btn-cta-cyan px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 self-start sm:self-auto shadow-xs">
+      <i data-lucide="plus" class="w-4 h-4"></i>
+      <span>+ Nova Ferramenta</span>
+    </button>
+  </div>
+
+  <!-- Busca e Filtro por Box/Categoria -->
+  <div class="flex flex-col sm:flex-row gap-3">
+    <div class="flex-1 bg-white p-3 rounded-xl border border-slate-200 flex items-center gap-2.5 shadow-xs">
+      <i data-lucide="search" class="w-4 h-4 text-slate-400 ml-1"></i>
+      <input type="text" id="busca-ferramentas" placeholder="Buscar ferramenta, descrição, categoria ou e-mail de acesso..."
+        class="w-full text-sm bg-transparent outline-none text-slate-800 placeholder-slate-400" />
+    </div>
+    <select id="filtro-categoria-ferramenta" class="px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-700 outline-none focus:border-blue-600">
+      <option value="todas">Todos os Boxes (Categorias)</option>
+    </select>
+  </div>
+
+  <!-- Container dos Boxes por Categoria -->
+  <div id="lista-ferramentas-boxes" class="space-y-6">
+    <!-- Renderizado via js/ferramentas.js -->
+  </div>
+
+</div>
+
+<!-- MODAL: CADASTRAR / EDITAR FERRAMENTA -->
+<div id="modal-ferramenta" class="hidden fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-xs flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-lg w-full overflow-hidden">
+    <div class="bg-[#0B1120] border-b-2 border-[#00E5B0] px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i data-lucide="wrench" class="w-5 h-5 text-[#00E5B0]"></i>
+        <h3 id="modal-ferramenta-titulo" class="text-white font-bold text-base">Adicionar Ferramenta</h3>
+      </div>
+      <button onclick="FerramentasModule.fecharModal()" class="text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <form id="form-ferramenta" class="p-6 space-y-4">
+      <input type="hidden" id="ferramenta-id" />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Box / Categoria *</label>
+          <input type="text" id="ferramenta-categoria" list="sugestoes-categorias" required placeholder="Ex: Editor de Imagem"
+            class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+          <datalist id="sugestoes-categorias">
+            <option value="Inteligência Artificial"></option>
+            <option value="Editor de Imagem"></option>
+            <option value="Ícones & Vetores"></option>
+            <option value="Editor de Texto & Copy"></option>
+            <option value="Dev & Deploy"></option>
+            <option value="Cores & Tipografia"></option>
+            <option value="Conversores & PDF"></option>
+          </datalist>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Nome da Ferramenta *</label>
+          <input type="text" id="ferramenta-nome" required placeholder="Ex: Remove.bg / Lucide Icons"
+            class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 mb-1">URL do Site *</label>
+        <input type="url" id="ferramenta-url" required placeholder="https://..."
+          class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+        <p class="text-[11px] text-slate-400 mt-1">O ícone do site será carregado automaticamente a partir do endereço.</p>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 mb-1">Descrição / Para que serve *</label>
+        <input type="text" id="ferramenta-descricao" required placeholder="Ex: Remover fundo de fotos de produtos em HD"
+          class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 mb-1">Acesso / Conta Vinculada (Opcional)</label>
+        <input type="text" id="ferramenta-acesso" placeholder="Ex: Login Google (cs.code@...) ou Plano Gratuito"
+          class="w-full px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:bg-white focus:border-blue-600" />
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2">
+        <button type="button" onclick="FerramentasModule.fecharModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">Cancelar</button>
+        <button type="submit" class="btn-cta-cyan px-5 py-2.5 rounded-xl text-xs">Salvar Ferramenta</button>
+      </div>
+    </form>
+  </div>
+</div>

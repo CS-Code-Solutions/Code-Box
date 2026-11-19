@@ -6,7 +6,7 @@
   <title>CodeBox | Dev Vault & SaaS Toolbox</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="css/style.css?v=1" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
 </head>
 <body class="auth-loading min-h-screen flex flex-col">
 
@@ -39,6 +39,10 @@
           <button data-route="projetos" onclick="Router.navegarPara('projetos')" class="nav-item-desktop px-4 py-2 rounded-xl text-sm flex items-center gap-2">
             <i data-lucide="layers" class="w-4 h-4"></i>
             <span>Sistemas & Atalhos</span>
+          </button>
+          <button data-route="ferramentas" onclick="Router.navegarPara('ferramentas')" class="nav-item-desktop px-4 py-2 rounded-xl text-sm flex items-center gap-2">
+            <i data-lucide="wrench" class="w-4 h-4"></i>
+            <span>Ferramentas</span>
           </button>
           <button data-route="cofre" onclick="Router.navegarPara('cofre')" class="nav-item-desktop px-4 py-2 rounded-xl text-sm flex items-center gap-2">
             <i data-lucide="key-round" class="w-4 h-4"></i>
@@ -75,16 +79,20 @@
     </footer>
 
     <!-- BOTTOM NAVIGATION MOBILE -->
-    <nav class="osync-bottom-nav md:hidden fixed bottom-0 inset-x-0 z-40 h-16 px-2 flex items-center justify-around">
-      <button data-route="dashboard" onclick="Router.navegarPara('dashboard')" class="nav-item-mobile flex-1 py-1.5 mx-1 rounded-xl flex flex-col items-center justify-center gap-1 text-[11px]">
+    <nav class="osync-bottom-nav md:hidden fixed bottom-0 inset-x-0 z-40 h-16 px-1.5 flex items-center justify-around">
+      <button data-route="dashboard" onclick="Router.navegarPara('dashboard')" class="nav-item-mobile flex-1 py-1.5 mx-0.5 rounded-xl flex flex-col items-center justify-center gap-1 text-[11px]">
         <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
         <span>Início</span>
       </button>
-      <button data-route="projetos" onclick="Router.navegarPara('projetos')" class="nav-item-mobile flex-1 py-1.5 mx-1 rounded-xl flex flex-col items-center justify-center gap-1 text-[11px]">
+      <button data-route="projetos" onclick="Router.navegarPara('projetos')" class="nav-item-mobile flex-1 py-1.5 mx-0.5 rounded-xl flex flex-col items-center justify-center gap-1 text-[11px]">
         <i data-lucide="layers" class="w-5 h-5"></i>
         <span>Sistemas</span>
       </button>
-      <button data-route="cofre" onclick="Router.navegarPara('cofre')" class="nav-item-mobile flex-1 py-1.5 mx-1 rounded-xl flex flex-col items-center justify-center gap-1 text-[11px]">
+      <button data-route="ferramentas" onclick="Router.navegarPara('ferramentas')" class="nav-item-mobile flex-1 py-1.5 mx-0.5 rounded-xl flex flex-col items-center justify-center gap-1 text-[11px]">
+        <i data-lucide="wrench" class="w-5 h-5"></i>
+        <span>Ferramentas</span>
+      </button>
+      <button data-route="cofre" onclick="Router.navegarPara('cofre')" class="nav-item-mobile flex-1 py-1.5 mx-0.5 rounded-xl flex flex-col items-center justify-center gap-1 text-[11px]">
         <i data-lucide="key-round" class="w-5 h-5"></i>
         <span>Cofre</span>
       </button>
@@ -135,13 +143,14 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
   <!-- SCRIPTS MODULARES DO CODEBOX -->
-  <script src="js/firebase-config.js?v=1"></script>
-  <script src="js/crypto-vault.js?v=1"></script>
-  <script src="js/utils.js?v=1"></script>
-  <script src="js/auth.js?v=1"></script>
-  <script src="js/router.js?v=1"></script>
-  <script src="js/dashboard.js?v=1"></script>
-  <script src="js/projetos.js?v=1"></script>
-  <script src="js/cofre.js?v=1"></script>
+  <script src="js/firebase-config.js?v=2"></script>
+  <script src="js/crypto-vault.js?v=2"></script>
+  <script src="js/utils.js?v=2"></script>
+  <script src="js/auth.js?v=2"></script>
+  <script src="js/router.js?v=2"></script>
+  <script src="js/dashboard.js?v=2"></script>
+  <script src="js/projetos.js?v=2"></script>
+  <script src="js/ferramentas.js?v=2"></script>
+  <script src="js/cofre.js?v=2"></script>
 </body>
 </html>
